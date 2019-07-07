@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="back">
+        <div class="description-container">
+            <div class="background-maker">
+                <div class="description-divar">
+                    <p>دیوار! پایگاه خرید و فروش بی‌واسطه‌</p>
+                    <p>اگه دنبال چیزی هستی، استانت رو انتخاب کن&nbsp;و تو دسته‌بندی‌ها به دنبالش بگرد.‌</p>
+                    <p>اگر هم می‌خوای چیزی بفروشی، چند تا عکس خوب ازش بگیر و آگهیت رو بچسبون به دیوار.</p>
+                    <p>علاوه بر وبسایت، می‌تونی از&nbsp;دیوار روی <a href="http://cafebazaar.ir/app/?id=ir.divar">دستگاه‌های اندرویدی</a>، <a href="https://itunes.apple.com/us/app/dywar/id863029557">آیفون</a> و <a href="https://itunes.apple.com/us/app/dywar/id863029557">آیپد</a>&nbsp;هم استفاده کنی.</p>
+                </div>
+                <div class="enamad">
+                    <img src="/images/enamad.png" alt="logo-Enamad" class="transparent">
+                </div>
+                <div class="social-network">
+                    <span id="head-social">
+                        <h1>دیوار</h1> را در شبکه‌های اجتماعی دنبال کنید:
+                    </span>
+                    <a href="https://twitter.com/divar_official" title="دیوار در توییتر">
+                        <i class="icofont-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/DivarApp/" title="دیوار در فیسبوک">
+                        <i class="icofont-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/divar.official/" title="دیوار در اینستاگرام">
+                        <i class="icofont-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="province-home">
+            <div class="search-box">
+                <input type="text" id="search-home" class="search" onkeyup="searchHome()" placeholder="جستجو سریع نام استان..." title="Type in a name">
+                <i class="icofont-search"></i>
+            </div>
+            <div class="row list-province home-p">
+                <% for(var i = 0; i < myProvince.length; i++) { %>
+                    <div class="col-c province">
+                        <a  class="a-province" href="/province/<%= myProvince[i] %>" ><p class="name-province"><%= myProvince[i] %></p></a>
+                    </div>
+                <% } %>
+            </div>
+            <div class="box-dropdown-p">
+                <div class="dropdown-province dropdown-province-home">
+
+                    <div><span>انتخاب استان ...</span></div>
+                    <div><i class="icofont-caret-down"></i></div>
+
+                </div>
+                <div class="dropdown-items dropdown-items-home">
+                    <% for(var i = 0; i < myProvince.length; i++) { %>
+                        <div class="province-item">
+                            <a class="names-dropdown"  href="/province/<%= myProvince[i] %>" ><%= myProvince[i] %></a>
+                        </div>
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script src="/javascripts/provinces.js"></script>

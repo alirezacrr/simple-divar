@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partials/tempalte/head.ejs %>
+</head>
+<body>
+<% include partials/content/nav.ejs %>
+<section class="layout">
+    <div class="primary">
+        <div class="AD"></div>
+        <button id="more">more</button>
+        <!-- Preloader -->
+        <div id="Load" class="load">
+            <div class="load__container">
+                <div class="load__animation"></div>
+                <div class="load__mask"></div>
+                <span class="load__title">Carregando...</span>
+            </div>
+        </div>
+    </div>
+    <aside class="secondary">
+        <% include partials/content/category.ejs %>
+    </aside>
+</section>
+<script>
+    var all = <%= allPage %>;
+    console.log(all)
+</script>
+<% include partials/tempalte/footer.ejs %>
+<% include partials/tempalte/jsdefaults.ejs %>
+<script src="/javascripts/homePage.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<div class="row">
+    <% advers.forEach(function (adverInfo, index) { %>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <a href="/id/<%= adverInfo.id %>" class="a-adver">
+                <div class="box-adver">
+                    <div class="box-img">
+                        <div>
+                            <% if (adverInfo.img ) {%>
+                                <img class="img-adver" src="/img_adver/<%= adverInfo.img %>">
+                            <% } else {%>
+                                <img class="img-adver" src="/images/noneImg.png">
+                            <% } %>
+                        </div>
+                        <div class="description-box ">
+                            <h1 class="title-description-box"><%= adverInfo.firstName %></h1>
+                            <div style=" direction: rtl;">
+                                <% const d = new Date(adverInfo.date); %>
+                                <small ><%=  ago(d.getTime()) %>  </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="price">قیمت:<%= adverInfo.price %></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <% }) %>
+</div>
+
+
+<% function ago(val) {
+    val = 0 | (Date.now() - val) / 1000;
+    var unit, length = { ثانیه: 60, دقیقه: 60, ساعت: 24, روز: 7, هفته: 4.35,
+        ماه: 12, سال: 10000 }, result;
+
+    for (unit in length) {
+        result = val % length[unit];
+        if (!(val = 0 | val / length[unit]))
+            return result + ' ' +(result-1 ? unit  : unit) + ' ' +  'پیش' ;
+    }
+}
+%>
+

@@ -1,0 +1,21 @@
+<div class="box-category">
+    <% if (myCategory === undefined ){ %>
+            <div class=" category active">
+        <% } else { %>
+                <div class=" category ">
+        <% } %>
+        <a href="/province/<%= select %>/" class="item-category">همه ی اگهی ها</a>
+    </div>
+    <% for(var i = 0; i < cg.length; i++) { %>
+        <% if (myCategory === cg[i].name ){ %>
+
+    <div class=" category active">
+        <% } else { %>
+        <div class=" category">
+            <% } %>
+            <a href="/province/<%= select %>/<%= cg[i].name %>" class="item-category"><%= cg[i].name %></a>
+        </div>
+
+        <% } %>
+    </div>
+</div>

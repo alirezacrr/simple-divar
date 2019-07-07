@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partials/tempalte/head.ejs %>
+</head>
+<body>
+<% include partials/content/nav.ejs %>
+
+<div class="container">
+    <div class="row">
+        <div class="mydivar row">
+            <a href="/my-divar/my-post" class="item-MD " id="myPost" >آگهی های من</a>
+            <a href="/my-divar/my-bookmark" class="item-MD " id="myBookmark" >آگهی های نشان شده</a>
+            <a href="/my-divar/recent-seen" class="item-MD " id="recentSeen" >بازید های اخیر</a>
+        </div>
+    </div>
+</div>
+
+<% if (page === 'myPost') { %>
+    <% include partials/content/myPost.ejs %>
+<% } else if (page === 'myBookmark') { %>
+    <% include partials/content/myBookmark.ejs %>
+<% } else { %>
+    <% include partials/content/recentSeen.ejs %>
+<% } %>
+<script  type="text/javascript">
+    $(document).ready(function()  {
+        $('#<%= page %>').css({"border-bottom-color": "#c50c00",
+            "border-bottom-width":"2px",
+            "border-bottom-style":"solid",
+            "color" : "black"
+        });
+    })
+</script>
+
+<% include partials/tempalte/jsdefaults.ejs %>
+
+</body>
+</html>

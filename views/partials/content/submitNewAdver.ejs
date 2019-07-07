@@ -1,0 +1,133 @@
+<form class="form-card" method='post' action='/adver' enctype="multipart/form-data">
+    <fieldset class="form-fieldset">
+        <legend class="form-legend">ثبت رایگان آگهی</legend>
+        <div class="form-radio form-radio-inline">
+            <div class="form-radio-legend">نوع آگهی</div>
+            <label class="form-radio-label">
+                <input name=type class="form-radio-field" type="radio" required value="فروشی"/>
+                <i class="form-radio-button"></i>
+                <span>فروشی</span>
+            </label>
+            <label class="form-radio-label">
+                <input name=type class="form-radio-field" type="radio" required value="درخواستی"/>
+                <i class="form-radio-button"></i>
+                <span>درخواستی</span>
+            </label>
+        </div>
+        <div class="form-element form-input">
+            <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" class="form-element-field" placeholder="اسم شما"
+                   name="firstName" type="text" required/>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9">اسم</label>
+        </div>
+
+        <div class="form-element form-input">
+            <input id="field-uyzeji-352rnc-4rv3g1-bvlh88-9dewuz" class="form-element-field" placeholder=" " type="email"
+                   name="email" required/>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-uyzeji-352rnc-4rv3g1-bvlh88-9dewuz">ایمیل</label>
+            <small class="form-element-hint">! ما هیچ وقت به شما اسپم نمیفرستیم</small>
+        </div>
+        <div class="form-checkbox form-checkbox-inline">
+            <div class="form-checkbox-legend">مایلم معاوضه کنم؟</div>
+            <label class="form-checkbox-label">
+                <input name=swap class="form-checkbox-field" type="radio" value="بله" required/>
+                <i class="form-checkbox-button"></i>
+                <span>بله</span>
+            </label>
+            <label class="form-checkbox-label">
+                <input name=swap class="form-checkbox-field" value="خیر" type="radio" required/>
+                <i class="form-checkbox-button"></i>
+                <span>خیر</span>
+            </label>
+
+        </div>
+
+        <div class="form-element form-select">
+            <select id="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r" class="form-element-field" required name="province">
+                <option disabled selected value="" class="form-select-placeholder"></option>
+                <% for(var i = 0; i < myProvince.length; i++) { %>
+                    <option value="<%= myProvince[i] %>">
+                        <%= myProvince[i] %>
+                    </option>
+                <% } %>
+            </select>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r">انتخاب استان </label>
+        </div>
+        <div class="form-element form-select">
+            <select id="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r" class="form-element-field" required name="category">
+                <option disabled selected value="" class="form-select-placeholder"></option>
+                <% for(var i = 0; i < cg.length; i++) { %>
+                    <option value="<%= cg[i].name %>">
+                        <%= cg[i].name %>
+                    </option>
+                <% } %>
+            </select>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r">انتخاب دسته بندی </label>
+        </div>
+        <div class="form-element form-textarea">
+            <input class="form-element-field" type="number" required name="price"
+                   onkeydown="javascript:  return event.keyCode == 69 ? false : true" placeholder=" قیمت به تومان">
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm">قیمت</label>
+
+        </div>
+        <div class="form-element form-textarea">
+            <input class="form-element-field" placeholder=" " required name="titleAdver">
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm">عنوان آگهی</label>
+
+        </div>
+        <div class="form-element form-textarea">
+            <textarea id="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm" class="form-element-field" placeholder=" "
+                      name="descriptionAdver"></textarea>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm">توضیحات آگهی</label>
+        </div>
+    </fieldset>
+    <div class="container">
+        <h1>عکس آگهی</h1>
+        <div class="col-xs-6">
+            <div class="image-upload avatar-upload ">
+                <div class="fileUpload">
+                    <label for="inputFile1">
+                        <img id="image_upload_preview1" class="img-responsive mainPic"
+                             src="http://placehold.it/350x150"/>
+                    </label>
+                    <input id="inputFile1" class="input-file" type="file" name="fileUploaded"
+                           accept=".png, .jpg, .jpeg"/>
+                </div>
+
+                <div class="avatar-remove reset" custattr="http://placehold.it/350x150" aria-hidden="true"
+                     style="display:none">
+                    <input type='button' id="btn-remove"/>
+                    <label for="imageUpload"></label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="form-btn" type="submit">Send inquiry</button>
+        <button class="form-btn-cancel -nooutline" onclick="location.href='/';" type="reset">Cancel</button>
+    </div>
+
+
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script src="/javascripts/submitNewAdvertising.js"></script>
+
