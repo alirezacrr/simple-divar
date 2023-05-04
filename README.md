@@ -1,6 +1,7 @@
 # Simple Divar
 
 simple "divar" . its really simple
+This was a simple project to get me started. It was built in 2019 and after that I made some small changes to run properly..
 
 
 ## Usage
@@ -13,7 +14,6 @@ npm install
 after install packages run `npm start` for run project.
 
 
-This was a simple project to get me started. It was built in 2019 and after that I made some small changes to run properly..
 
 ## Screenshots
 
