@@ -14,3 +14,7 @@ after install packages run `npm start` for run project.
 
 
 This was a simple project to get me started. It was built in 2019 and after that I made some small changes to run properly..
+
+## Screenshots
+
+![Plugin Screenshot 1](http://alirezacrr.ir/wp-content/uploads/2023/05/single.png)
