@@ -1,3 +1,16 @@
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/iranyekanwebregular.ttf') format('truetype'),
+    url('./fonts/iranyekanwebregular.woff') format('woff');
+}
+
+body{
+    font-family: 'vazir', serif;
+    text-align: right;
+}
+
 .row {
     margin: 0;
 }
@@ -24,7 +37,6 @@ input:focus{
 }
 
 #city {
-    background: white;
     border: none;
     margin: 0 auto;
     padding: 0 20px;
@@ -114,7 +126,7 @@ input:focus{
 
 a:hover {
     text-decoration: none;
-    color: black;
+    color: initial;
     cursor: pointer;
 }
 
@@ -1213,6 +1225,7 @@ main {
 
 .form-element-label {
     position: absolute;
+    right: 0;
     top: 0.75rem;
     line-height: 1.5rem;
     pointer-events: none;
@@ -1246,6 +1259,7 @@ main {
     opacity: 0.001;
     transition: opacity 0.28s ease;
     will-change: opacity;
+    text-align: right;
 }
 
 .form-element-field:-ms-input-placeholder {
@@ -1354,11 +1368,6 @@ select.form-element-field {
 .form-element-field[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-body {
-    background: #ffffff;
-    font-family: 'Open Sans', sans-serif;
 }
 
 h1 {

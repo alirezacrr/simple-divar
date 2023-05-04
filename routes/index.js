@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var advertising = require('../models/advertising');
-var category = require('../models/category');
-var province = require('../models/province');
+var province = require('../province.json');
+var categories = require('../categories.json');
 var path = require('path');
+var User = require('../models/user');
 
 /* GET home page. */
 var myProvince = [];
-
-province.find({}, function (err, data) {
-    data.forEach(function (item) {
-        myProvince = myProvince.concat(item.name);
-    });
+province.forEach(function (item) {
+    myProvince = myProvince.concat(item.title);
 });
+
 router.get('/favicon.ico', (req, res) =>
     res.status(204));
 router.get('/', function (req, res, next) {
@@ -31,16 +30,13 @@ router.get('/', function (req, res, next) {
 });
 /* GET speakers page. */
 router.get('/new', function (req, res, next) {
-    category.category(function (err, cg) {
-        res.render('newAdvertising', {
-            title: 'new',
-            myProvince: myProvince,
-            auth: req.user,
-            cg: cg,
-            select: req.session.province
-        });
+    res.render('newAdvertising', {
+        title: 'new',
+        myProvince: myProvince,
+        auth: req.user,
+        cg: categories,
+        select: req.session.province
     });
-
 });
 
 
@@ -103,65 +99,58 @@ router.get('/province/:Advertising/:Category?', function (req, res, next) {
                 allAdver.push(item);
             }
         });
-        category.category(function (err, cg) {
-            var nameCategory = [];
-            cg.forEach(function (nameCg) {
-                nameCategory = nameCategory.concat(nameCg.name);
-            });
-            if (nameCategory.includes(req.params.Category)) {
-                allAdver.forEach(function (adver) {
-                    if (adver.category === req.params.Category) {
-                        limitedAdver.push(adver);
-
-                    }
-                });
-            } else {
-                limitedAdver = allAdver;
-            }
-            if (myProvince.includes(req.params.Advertising)) {
-                limitedAdver = limitedAdver.reduce(function (result, value, index, array) {
-                    if (index % 6 === 0)
-                        result.push(array.slice(index, index + 6));
-                    return result;
-                }, []);
-                console.log(limitedAdver.length);
-                global.limitedAdver = limitedAdver;
-                res.render('index', {
-                    title: 'اگهی' + ' ' + req.params.Advertising,
-                    allPage: limitedAdver.length,
-                    auth: req.user,
-                    myProvince: myProvince,
-                    cg: cg,
-                    select: req.session.province,
-                    myCategory:req.params.Category
-                });
-            } else {
-                res.render('404');
-                console.log(req.params.Advertising)
-            }
+        var nameCategory = [];
+        categories.forEach(function (nameCg) {
+            nameCategory = nameCategory.concat(nameCg.name);
         });
+        if (nameCategory.includes(req.params.Category)) {
+            allAdver.forEach(function (adver) {
+                if (adver.category === req.params.Category) {
+                    limitedAdver.push(adver);
+
+                }
+            });
+        } else {
+            limitedAdver = allAdver;
+        }
+        if (myProvince.includes(req.params.Advertising)) {
+            limitedAdver = limitedAdver.reduce(function (result, value, index, array) {
+                if (index % 6 === 0)
+                    result.push(array.slice(index, index + 6));
+                return result;
+            }, []);
+            console.log(limitedAdver.length);
+            global.limitedAdver = limitedAdver;
+            res.render('index', {
+                title: 'اگهی' + ' ' + req.params.Advertising,
+                allPage: limitedAdver.length,
+                auth: req.user,
+                myProvince: myProvince,
+                cg: categories,
+                select: req.session.province,
+                myCategory: req.params.Category
+            });
+        } else {
+            res.render('404');
+            console.log(req.params.Advertising)
+        }
     });
 
 });
 
 router.post('/province/:Advertising/:Category?', function (req, res, next) {
-    if (limitedAdver.length === 0){
+    if (limitedAdver.length === 0) {
         res.render('NotFoundAdver', {
-            Text: 'not found'
+            Text: 'آگهی برای نمایش وجود ندارد '
         });
-    }
-    else {
-
+    } else {
         res.render('Advertising', {
             advers: limitedAdver[req.body._page]
         });
     }
-
-
 });
 
 router.get('/id/:id', function (req, res, next) {
-
     advertising.find({}, function (err, data) {
         var adverData;
         data.forEach(function (item) {

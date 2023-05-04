@@ -4,6 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var flash = require('connect-flash');
+const bcrypt = require("bcryptjs");
 
 
 /* GET users listing. */
@@ -47,7 +48,7 @@ passport.use('local-signup', new LocalStrategy({
         }, function (err, user) {
             // check to see if there's already a user with that email
             if (user)
-                return done(null, false, req.flash('error', 'That username is already taken.'));
+                return done(null, false, req.flash('error', 'نام کاربری تکراری است'));
             else {
                 if (password === password2) {
                     // create the user
@@ -56,17 +57,19 @@ passport.use('local-signup', new LocalStrategy({
                         username: username,
                         password: password
                     });
-                    User.createUser(newUser, function (err, user) {
-                        if (err) throw err;
-                        console.log(user);
+                    bcrypt.genSalt(10, function (err, salt) {
+                        bcrypt.hash(newUser.password, salt, function (err, hash) {
+                            newUser.password = hash;
+                            newUser.save().then(function () {
+                                done(null, newUser);
+                            }).catch(function (err) {
+                                done(null, false, req.flash('error', err));
+                            });
+                        });
                     });
-                    newUser.save().then(function () {
-                        done(null, newUser);
-                    }).catch(function (err) {
-                        done(null, false, req.flash('error', err));
-                    });
+
                 } else {
-                    return done(null, false, req.flash('error', 'password not match'));
+                    return done(null, false, req.flash('error', 'پسورد درست نیست'));
                 }
 
             }
@@ -83,7 +86,7 @@ passport.use(new LocalStrategy(
                 return cb(err);
             }
             if (!user) {
-                return cb(null, false, {message: 'Invalid username ' + username});
+                return cb(null, false, {message: 'نام کاربری درست نیست ' + username});
             }
             // else {
             User.comparePassword(password, user.password, function (err, isMatch) {
@@ -91,19 +94,9 @@ passport.use(new LocalStrategy(
                 if (isMatch) {
                     return cb(null, user);
                 } else {
-                    return cb(null, false, {message: 'Invalid password'});
+                    return cb(null, false, {message: 'رمزعبور درست نیست'});
                 }
             });
-            // }
-            // return cb(null, user);
-            // User.comparePassword(password, user.password, function (err, isMatch) {
-            //     if (err) throw err;
-            //     if (isMatch) {
-            //         return done(null, user);
-            //     } else {
-            //         return done(null, false, {message: 'Invalid password'});
-            //     }
-            // });
         });
     }));
 passport.serializeUser(function (user, done) {
@@ -117,8 +110,15 @@ passport.deserializeUser(function (id, done) {
 });
 router.get('/login',
     function (req, res) {
-        res.render('register', {
+        res.render('login', {
             title: 'login',
+            message: req.flash('error')
+        });
+    });
+router.get('/register',
+    function (req, res) {
+        res.render('register', {
+            title: 'Register',
             message: req.flash('error')
         });
     });

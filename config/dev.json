@@ -1,0 +1,4 @@
+{
+  "db": "mongodb://localhost/divar",
+  "port": 9000
+}

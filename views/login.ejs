@@ -1,40 +1,32 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <% include partials/tempalte/head.ejs %>
 </head>
 <body>
+
 <div class="signup-form">
     <div class="container">
         <div class="header">
-            <h1>ساخت حساب کاربری</h1>
+            <h1>ورود به حساب کاربری</h1>
         </div>
-        <form action="/users/signup" method="post">
+        <form action="/users/login" method="post">
             <div class="input">
                 <i class="fa-solid fa-user"></i>
                 <input type="text" placeholder="نام کاربری" name="username" id="username"/>
             </div>
             <div class="input">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="رمزعبور" name="password" id="password"/>
+                <input type="password" placeholder="رمز عبور" name="password" id="password"/>
             </div>
-            <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="تکرار رمزعبور" name="rePassword" autocomplete="off" id="password" class="form-control" required>
-            </div>
-            <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="email" placeholder="ایمیل" name="email" autocomplete="on" id="email" class="form-control" required>
-            </div>
-            <input class="signup-btn" type="submit" value="ثبت نام"/>
+            <input class="signup-btn" type="submit" value="ورود"/>
         </form>
         <% if (message.length > 0) { %>
             <div class="col-sm-12 text-center">
                 <p class="alert alert-danger  " style="text-align: center"><%= message %></p>
             </div>
         <% } %>
-        <p>حساب کاربری دارید ؟ <a href="/users/login">ورود</a></p>
+        <p>حساب کاربری ندارید ؟! <a href="/users/register">ساخت حساب</a></p>
     </div>
 </div>
 <style>
@@ -156,4 +148,6 @@
 <% include partials/tempalte/jsdefaults.ejs %>
 </body>
 </html>
+
+
 

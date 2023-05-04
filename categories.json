@@ -1,0 +1,30 @@
+[
+  {
+    "name": "ماشین",
+    "slug": "car"
+  },
+  {
+    "name": "لوازم خانگی",
+    "slug": "home-tool"
+  },
+  {
+    "name": "گوشی",
+    "slug": "phone"
+  },
+  {
+    "name": "اکسسوری",
+    "slug": "asc"
+  },
+  {
+    "name": "لپتاپ و کامپیوتر",
+    "slug": "laptop"
+  },
+  {
+    "name": "ورزشی",
+    "slug": "sport"
+  },
+  {
+    "name": "ملک و املاک",
+    "slug": "apartment"
+  }
+]

@@ -22,8 +22,8 @@ var advertising = mongoose.model('adver', adverSchema);
 module.exports = advertising;
 
 
-module.exports.createAdver = function (newUser, callback) {
-    newUser.save(callback);
+module.exports.createAdver = function (newAd, callback) {
+    newAd.save(callback);
 };
 module.exports.finding = function ( callback) {
     advertising.find({} , callback);

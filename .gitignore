@@ -89,3 +89,6 @@ typings/
 
 # idea
 .idea/
+
+
+/public/images

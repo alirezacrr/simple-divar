@@ -20,6 +20,8 @@ var db = mongoose.connection;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const config = require('./config/dev.json');
+
 
 var app = express();
 
@@ -33,13 +35,13 @@ app.set('view engine', 'ejs');
 
 
 
-mongoose.connect("mongodb://localhost/divar", {useNewUrlParser: true});
+mongoose.connect(config.db, {useNewUrlParser: true});
 
 db.on('error', function () {
     console.log("oh oh");
 });
 db.once('connected', function () {
-    console.log('mongo omad :D');
+    console.log('mongo connect :D');
 });
 app.use(busboy());
 app.use(bodyParser.json());
@@ -100,7 +102,7 @@ app.use(function (req, res, next) {
 
 
 // Set Port
-app.PORT = 9080;
+app.PORT = config.port;
 
 app.listen(app.PORT, function(){
     console.log('Server started on  http://localhost:'+ app.PORT);
